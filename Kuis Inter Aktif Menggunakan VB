@@ -1,0 +1,34 @@
+Public Class Form1
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        If TextBox1.Text = "" And TextBox2.Text = "" Then
+            MessageBox.Show("Anda Harus Mengisi Semua Field")
+        Else
+            Form2.Show()
+            Me.Hide()
+        End If
+    End Sub
+    Private Sub TextBox1_keypress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox1.KeyPress
+        Dim keyascii As Short = Asc(e.KeyChar)
+        If (e.KeyChar Like "[A-Z, a-z]" _
+            OrElse keyascii = Keys.Back _
+            OrElse keyascii = Keys.Space _
+            OrElse keyascii = Keys.Return _
+            OrElse keyascii = Keys.Delete) Then
+            keyascii = 0
+        End If
+        e.Handled = CBool(keyascii)
+    End Sub
+
+    Private Sub TextBox2_keypress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox2.KeyPress
+        Dim keyascii As Short = Asc(e.KeyChar)
+        If (e.KeyChar Like "[0-9]" _
+            OrElse keyascii = Keys.Back _
+            OrElse keyascii = Keys.Space _
+            OrElse keyascii = Keys.Return _
+            OrElse keyascii = Keys.Delete) Then
+            keyascii = 0
+        End If
+        e.Handled = CBool(keyascii)
+    End Sub
+End Class
